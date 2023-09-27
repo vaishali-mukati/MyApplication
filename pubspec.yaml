@@ -57,7 +57,7 @@ flutter:
   uses-material-design: true
 
   assets:
-     - assets/New folder/qui_images.avif
+    - assets/quiz_image/download.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
