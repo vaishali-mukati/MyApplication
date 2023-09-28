@@ -10,22 +10,29 @@ class Quiz extends StatefulWidget{
    }
 }
  class _QuizState extends State<Quiz>{
-  Widget? activescreen ;
+   var activescreen = 'start screen';
 
-   @override
-  void initState() {
-     activescreen = StartScreen(swicthScreen);
-     super.initState();
-  }
+   //@override
+  //void initState() {
+     //activescreen = StartScreen(swicthScreen);
+     //super.initState();
+  //}
 
   void swicthScreen(){
      setState(() {
-        activescreen = QuestionScreen();
+        activescreen = 'question-screen';
      });
 
   }
      @override
    Widget build(context) {
+
+    Widget screenWidget  = StartScreen(swicthScreen);
+
+    if(activescreen == 'question-screen'){
+      screenWidget = QuestionScreen();
+    }
+
       return MaterialApp(
             home:Scaffold(
               appBar:AppBar(title:const Text('QuizApp'),),
@@ -34,15 +41,15 @@ class Quiz extends StatefulWidget{
                    gradient: LinearGradient(
                      colors:[
                        Colors.deepPurple,
-                       Colors.deepOrange,
+                       Colors.deepPurpleAccent,
                     ],
                    begin:Alignment.topLeft,
                   end:Alignment.bottomRight,
                  ),
               ),
-             child: activescreen,
-           ),
+             child:screenWidget,
             ),
+      )
       );
      }
  }
