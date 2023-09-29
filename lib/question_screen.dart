@@ -4,6 +4,10 @@ import 'package:adv_project/questions.dart';
 import 'package:adv_project/modals/quiz_question.dart';
 
 class QuestionScreen extends StatefulWidget{
+
+  const QuestionScreen({super.key,required this.onSelectScreen});
+  final void Function(String answer) onSelectScreen;
+
    @override
   State<QuestionScreen> createState() {
         return _QuestionState();
@@ -13,7 +17,8 @@ class QuestionScreen extends StatefulWidget{
 class _QuestionState extends State<QuestionScreen>{
   var currentQIndex = 0;
 
-  void IncrementCurrentQ (){
+  void incrementCurrentQ (String selectAnswer){
+    widget.onSelectScreen(selectAnswer);
     setState(() {
       currentQIndex++;
     });
@@ -24,11 +29,10 @@ class _QuestionState extends State<QuestionScreen>{
   Widget build( context) {
      final currentQuestion = questions[currentQIndex];
 
-    return  SizedBox
-      (
+    return  SizedBox(
       width: double.infinity,
         child:Container(
-           margin:const EdgeInsets.all(40),
+           margin:const EdgeInsets.all(20),
            child: Column(
              mainAxisAlignment:MainAxisAlignment.center,
              crossAxisAlignment:CrossAxisAlignment.stretch,
@@ -43,7 +47,13 @@ class _QuestionState extends State<QuestionScreen>{
                ),
                const SizedBox(height: 30),
                ...currentQuestion.getShuffledAnswer().map((answer){
-                 return AnswerButton(answertext:answer,onTap:(){});
+                 return AnswerButton(
+                     answertext:answer,
+                     onTap:() {
+                       incrementCurrentQ(answer);
+
+                     }
+                 );
                })
              ],
            ),
