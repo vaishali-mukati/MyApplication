@@ -7,7 +7,10 @@ class QuestionSummary extends StatelessWidget{
 
   @override
   Widget build( context) {
-     return Column(
+     return SizedBox(
+       height: 300,
+         child:SingleChildScrollView(
+         child:Column(
              children:sumarryData.map(
                      (data) {
                     return  Row(children: [
@@ -24,6 +27,8 @@ class QuestionSummary extends StatelessWidget{
                     );
              }).toList()
 
-     );
+     ),
+     ),
+     ) ;
   }
 }
