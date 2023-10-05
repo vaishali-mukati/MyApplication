@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:adv_project/questions_sumarry.dart';
 
 class ResultScreen extends StatelessWidget{
-  const ResultScreen({super.key, required this.chosenAnswer});
-
+  const ResultScreen({super.key, required this.chosenAnswer,required this.restartQuiz});
+  final void Function() restartQuiz;
   final List<String> chosenAnswer;
 
  List<Map<String,Object>> getSummaryData(){
@@ -36,22 +36,34 @@ class ResultScreen extends StatelessWidget{
           child:Container(
            margin:const EdgeInsets.all(20),
             child:Column(
+             // crossAxisAlignment:CrossAxisAlignment.start,
               mainAxisAlignment:MainAxisAlignment.center,
              children: [
-               Text('you Answered $numTotalCorrectAnswer out of $numTotalQuestion questions correctly'),
+               Text('you Answered $numTotalCorrectAnswer out of $numTotalQuestion questions correctly.',
+               textAlign:TextAlign.center,
+               ),
                const SizedBox(height: 30),
                QuestionSummary(summaryData),
               //const SizedBox(height:30),
               //const Text('List of Answer and questions'),
                const SizedBox(height:30),
-               TextButton(
-                   onPressed:(){},
-                   child:const Text('Restart Quiz'),
-               ),
-
+               //TextButton(
+                   //onPressed:(){},
+                   //child: OutlinedButton() //const Text('Restart Quiz'),
+               //),
+                TextButton.icon(
+                    onPressed:restartQuiz,
+                    style:OutlinedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                    ),
+                  icon:const Icon(Icons.refresh),
+                  label: const Text('Restart Quiz'),
+                  
+                )
             ],
+            )
         ),
-       )
-     );
+       );
+
   }
 }
