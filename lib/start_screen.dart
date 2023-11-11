@@ -14,8 +14,8 @@ class StartScreen extends StatelessWidget{
         mainAxisSize:MainAxisSize.min,
         children: [
           Image.asset(
-              'assets/quiz_image/download.png',
-              width:300,
+              'assets/images/quiz-logo.png',
+              width:250,
              //color:Colors.black12,
           ),
           //Opacity(
@@ -25,7 +25,7 @@ class StartScreen extends StatelessWidget{
           //      'assets/quiz_image/download.png'
           //      ),
           // ),
-          const SizedBox(height: 80),
+          const SizedBox(height: 40),
           const  Text(
             'Learn Flutter The Fun way!',
           style:TextStyle(color:
